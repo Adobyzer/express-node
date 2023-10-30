@@ -23,6 +23,8 @@ console.log("important method server listen on port : ", port);
 /*#2 app.method(path,handler )
 
  ex app.get(/,req,res,next) or app.port(/,req,res,next)
+ get = fetch info without modiyfing anything
+ post = add info (so creating something)
 handler = function(req,res,next)
 req = requet
 res = response
@@ -52,7 +54,12 @@ res.sendFile(absolutePath);
 //app.use('/public',express.static(abosulutePathCss));
 
 
+//#creating a simple API(serve data) route 
 
+app.get('/json',function(req,res,next){
+
+res.json({"message": "Hello json"});
+});
 
 
 
