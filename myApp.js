@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 //import the express dependencies
 let express = require('express');
 
@@ -54,14 +56,31 @@ res.sendFile(absolutePath);
 //app.use('/public',express.static(abosulutePathCss));
 
 
-//#creating a simple API(serve data) route 
+/*#5creating a simple API(serve data) route 
 
 app.get('/json',function(req,res,next){
 
 res.json({"message": "Hello json"});
 });
+*/
 
+//#playing arround with env variable in path /json
+const mySecret = process.env.MESSAGE_STYLE;
+app.get('/json',function(req,res,next){
 
+    //put it inside for test fcc
+    const mySecret = process.env.MESSAGE_STYLE;
+
+    // === for value and == for type ;(
+    if(mySecret === "uppercase"){
+        res.json({"message" : "HELLO JSON"});
+    }
+
+    else{
+        res.json({"message": "hello json"})
+    }
+
+});
 
 
 
