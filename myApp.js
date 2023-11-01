@@ -6,6 +6,12 @@ let express = require('express');
 //create a express object with field and methods
 let app = express();
 
+//use middleware to logger (step 7)
+app.use((req,res,next)=>{
+    const logMessage = `${req.method} ${req.path} - ${req.ip}`;
+    console.log(logMessage);
+    next(); // Call next to move to the next middleware or route handler REALLY IMPORTANT
+})
 
 //use middleware (step 4)
 let abosulutePathCss = __dirname +'/public'
@@ -64,7 +70,8 @@ res.json({"message": "Hello json"});
 });
 */
 
-//#playing arround with env variable in path /json
+/*#6 playing arround with env variable in path /json
+
 app.get('/json',function(req,res){
 
     //put it inside for test fcc
@@ -80,6 +87,7 @@ app.get('/json',function(req,res){
     }
 
 });
+*/
 
 
 
