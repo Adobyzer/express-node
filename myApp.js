@@ -108,6 +108,15 @@ app.get('/:word/echo',(req,res) =>{
   
   })
 
+  //#9 get route query url
+
+  app.get('/name',(req,res) =>{
+
+    res.json({"name" : req.query.first + " "+ req.query.last});
+    
+  })
+  
+
 
 
 
