@@ -6,6 +6,13 @@ let express = require('express');
 //create a express object with field and methods
 let app = express();
 
+const bodyParser = require('body-parser');
+
+
+//step 11  mount middle ware bodyParser
+
+
+app.use(bodyParser.urlencoded({extended: false}));
 //chain a  middleware to a get route 
 
 /*
