@@ -65,11 +65,10 @@ res.json({"message": "Hello json"});
 */
 
 //#playing arround with env variable in path /json
-const mySecret = process.env.MESSAGE_STYLE;
-app.get('/json',function(req,res,next){
+app.get('/json',function(req,res){
 
     //put it inside for test fcc
-    const mySecret = process.env.MESSAGE_STYLE;
+    let mySecret = process.env.MESSAGE_STYLE;
 
     // === for value and == for type ;(
     if(mySecret === "uppercase"){
