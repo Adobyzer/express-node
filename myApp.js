@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
+
 //chain a  middleware to a get route 
 
 /*
@@ -115,13 +116,27 @@ app.get('/:word/echo',(req,res) =>{
   
   })
 
-  //#9 get route query url
+  /*#9 get route query url
 
   app.get('/name',(req,res) =>{
 
-    res.json({"name" : req.query.first + " "+ req.query.last});
+    res.send({"name" : req.query.first + " "+ req.query.last});
     
   })
+
+  */
+
+  //FINALE EXERCISE 
+
+  app.post('/name', (req, res) => {
+
+    res.send("name : " + req.body.first + " " + req.body.last);
+  
+    console.log(req.body.first + " " + req.body.last);
+  })
+
+
+
   
 
 
