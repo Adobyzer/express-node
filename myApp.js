@@ -101,6 +101,13 @@ app.get('/json',function(req,res){
 */
 
 
+//#8 echo the url info 
+app.get('/:word/echo',(req,res) =>{
+
+    res.json({"echo": req.params.word})
+  
+  })
+
 
 
 
