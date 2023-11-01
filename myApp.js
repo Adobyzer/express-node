@@ -6,6 +6,19 @@ let express = require('express');
 //create a express object with field and methods
 let app = express();
 
+//chain a  middleware to a get route 
+
+/*
+In the route app.get('/now', ...) chain a middleware function and the final handler. 
+In the middleware function you should add the current time to the request object in the req.time key. You can use new Date().toString(). 
+In the handler, respond with a JSON object, taking the structure {time: req.time}.
+*/
+app.get('/now',(req,res) =>{
+req.time = new Date().toString
+next();
+}, (req,res) =>{
+res.json({"time " : req.time});
+});
 //use middleware to logger (step 7)
 app.use((req,res,next)=>{
     const logMessage = `${req.method} ${req.path} - ${req.ip}`;
@@ -14,8 +27,7 @@ app.use((req,res,next)=>{
 })
 
 //use middleware (step 4)
-let abosulutePathCss = __dirname +'/public'
-app.use('/public',express.static(abosulutePathCss));
+app.use('/public',express.static(__dirname + '/public'));
  
 /*
 const port = 3000;
@@ -43,23 +55,22 @@ app.get("/",function(req,res){
 */
 
 
-/*
-#3  res.sendFile(path) method (non static file such html)
+
+//#3  res.sendFile(path) method (non static file such html)
 
 
-let absolutePathHtml = __dirname +'/views/index.html'
+let absolutePathHtml = __dirname +'/views/index.html';
 
 app.get('/',function(req,res,next){
 
 res.sendFile(absolutePath);
 });
 
-*/
+
 
 
 //#4 middle ware express.static(path) for (static file sucha s css , script , image)
-//let abosulutePathCss = __dirname +'/public'
-//app.use('/public',express.static(abosulutePathCss));
+app.use('/public',express.static(__dirname +'/public'));
 
 
 /*#5creating a simple API(serve data) route 
