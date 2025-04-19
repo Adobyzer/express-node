@@ -1,10 +1,39 @@
-require('dotenv').config()
-
-//import the express dependencies
 let express = require('express');
+
+const PORT = 14590
+//#1 log "Hello World"
+console.log("Hello World");
 
 //create a express object with field and methods
 let app = express();
+
+//#2 app.get method to serve string 'Response string'
+//vital for loading the api
+app.listen(PORT, () => {
+    console.log(`Server listening at http://localhost:${PORT}`);
+  });
+
+
+app.get("/hello",function (req,res){
+    res.send("Hello Express")
+})
+
+//#3 app.get method to server file like html  on / path
+let absolutePathHtml = __dirname +'/views/index.html';
+
+app.get('/',function(req,res,next){
+
+res.sendFile(absolutePathHtml);
+});
+
+//#4 middle ware express.static(path) for (static file sucha s css , script , image)
+app.use('/public',express.static(__dirname +'/public'));
+
+
+/*
+require('dotenv').config()
+
+
 
 const bodyParser = require('body-parser');
 
@@ -20,7 +49,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 In the route app.get('/now', ...) chain a middleware function and the final handler. 
 In the middleware function you should add the current time to the request object in the req.time key. You can use new Date().toString(). 
 In the handler, respond with a JSON object, taking the structure {time: req.time}.
-*/
+
 app.get('/now',(req,res) =>{
 req.time = new Date().toString
 next();
@@ -60,25 +89,16 @@ res = response
 app.get("/",function(req,res){
     res.send("Hello Express");
 });
-*/
-
-
-
-//#3  res.sendFile(path) method (non static file such html)
-
-
-let absolutePathHtml = __dirname +'/views/index.html';
-
-app.get('/',function(req,res,next){
-
-res.sendFile(absolutePath);
-});
 
 
 
 
-//#4 middle ware express.static(path) for (static file sucha s css , script , image)
-app.use('/public',express.static(__dirname +'/public'));
+
+
+
+
+
+
 
 
 /*#5creating a simple API(serve data) route 
@@ -87,16 +107,16 @@ app.get('/json',function(req,res,next){
 
 res.json({"message": "Hello json"});
 });
-*/
 
-/*#6 playing arround with env variable in path /json
+
+
 
 app.get('/json',function(req,res){
 
-    //put it inside for test fcc
+    
     let mySecret = process.env.MESSAGE_STYLE;
 
-    // === for value and == for type ;(
+    
     if(mySecret === "uppercase"){
         res.json({"message" : "HELLO JSON"});
     }
@@ -106,17 +126,17 @@ app.get('/json',function(req,res){
     }
 
 });
-*/
 
 
-//#8 echo the url info 
+
+
 app.get('/:word/echo',(req,res) =>{
 
     res.json({"echo": req.params.word})
   
   })
 
-  /*#9 get route query url
+
 
   app.get('/name',(req,res) =>{
 
@@ -124,9 +144,9 @@ app.get('/:word/echo',(req,res) =>{
     
   })
 
-  */
+  
 
-  //FINALE EXERCISE 
+ 
 
   app.post('/name', (req, res) => {
 
@@ -135,6 +155,8 @@ app.get('/:word/echo',(req,res) =>{
     console.log(req.body.first + " " + req.body.last);
   })
 
+  */
+
 
 
   
@@ -161,4 +183,4 @@ app.get('/:word/echo',(req,res) =>{
 
 
 
- module.exports = app;
+ //module.exports = app;
